@@ -8,17 +8,17 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/Sling2009/gregTech</Support>
   <Project>https://www.cseforge.com/minecraft/modpacks/gt-new-horizons</Project>
-  <Overview>[b]GregTech New Horizons Minecraft Server[/b][br]Ein vollständig automatisierter Server-Container zum schnellen Deployen eines GTNH-Servers.[br][br]Setup:[br][li]Du musst die [b]EULA[/b] akzeptieren, sonst startet der Server nicht.[br][li]Mit der [b]OPS[/b]-Variable kannst du Admin-Spieler festlegen.[br][li]Whitelist kannst du manuell in der Datei whitelist.json im Volume anlegen.</Overview>
+  <Overview>[b]GregTech New Horizons Minecraft Server[/b][br]A fully automated server container for quickly deploying a GTNH server.[br][br]Setup:[br][li]You must accept the [b]EULA[/b], otherwise the server will not start.[br][li]With the [b]OPS[/b] variable you can define admin players.[br][li]Whitelist can be manually created in the whitelist.json file in the volume.</Overview>
   <Category>GameServers:</Category>
   <ExtraSearchTerms>minecraft,gtnh,gregtech,new horizons</ExtraSearchTerms>
   <Icon>https://mmcreviews.com/wp-content/uploads/2023/12/636125694388807951.png</Icon>
   <Config
     Type="Path"
-    Name="Serververzeichnis"
+    Name="Server Directory"
     Target="/home/minecraft"
     Default="/mnt/user/appdata/gregtech/"
     Mode="rw"
-    Description="Hier werden die Serverdaten, Welt, Konfiguration usw. gespeichert."
+    Description="This is where the server data, world, configuration etc. are stored."
     Display="always"
     Required="true"
     Mask="false"/>
@@ -27,7 +27,7 @@
     Name="EULA"
     Target="EULA"
     Default="false"
-    Description="Akzeptiere die Minecraft EULA (https://account.mojang.com/documents/minecraft_eula) – Muss auf 'true' gesetzt werden."
+    Description="Accept the Minecraft EULA (https://account.mojang.com/documents/minecraft_eula) – must be set to 'true'."
     Display="always"
     Required="true"
     Mask="false"/>
@@ -36,7 +36,7 @@
     Name="Xms"
     Target="MEM_MIN"
     Default="6G"
-    Description="wert für Arbeitsspeicher Minwert"
+    Description="Value for minimum memory allocation"
     Display="advanced"
     Required="false"
     Mask="false"/>
@@ -45,7 +45,7 @@
     Name="Xmx"
     Target="MEM_MAX"
     Default="6G"
-    Description="wert für Arbeitsspeicher Maxwert"
+    Description="Value for maximum memory allocation"
     Display="advanced"
     Required="false"
     Mask="false"/>
@@ -55,7 +55,7 @@
     Target="25565"
     Default="29400"
     Mode="tcp"
-    Description="Host Port wird im Container auf 25565 gemapt"
+    Description="Host port mapped to 25565 inside the container"
     Display="advanced"
     Required="true"
     Mask="false">29400</Config>
