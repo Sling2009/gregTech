@@ -23,30 +23,12 @@
     Mask="false"/>
   <Config
     Type="Variable"
-    Name="WHITE_LIST"
-    Target="WHITE_LIST"
-    Default="DarthSling,Reaper_LP_TTV,Lyisina"
-    Description="User die auf der Whitelist stehen"
-    Display="always"
-    Required="true"
-    Mask="false"/>
-  <Config
-    Type="Variable"
     Name="EULA"
     Target="EULA"
     Default="false"
     Description="Akzeptiere die Minecraft EULA (https://account.mojang.com/documents/minecraft_eula) – Muss auf 'true' gesetzt werden."
     Display="always"
     Required="true"
-    Mask="false"/>
-  <Config
-    Type="Variable"
-    Name="OPS"
-    Target="OPS"
-    Default="DarthSling,Reaper_LP_TTV,Lyisina"
-    Description="Kommagetrennte Minecraft-Spielernamen mit Adminrechten (OPs)"
-    Display="always"
-    Required="false"
     Mask="false"/>
   <Config
     Type="Port"
