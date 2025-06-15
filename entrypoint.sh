@@ -1,6 +1,27 @@
 #!/bin/bash
 
 set -x
+
+update_server_jsons() {
+  local player_list="$1"
+  local file_path="$2"
+  echo "update ${file_path}"
+  # Split die Spieler in ein Array
+  IFS=',' read -ra players <<<"$player_list"
+
+  # Erstelle ein leeres JSON-Array
+  local json_array="[]"
+
+  # Füge für jeden Spieler ein Objekt hinzu
+  for player in "${players[@]}"; do
+    echo "add user ${player}"
+    json_array=$(echo "$json_array" | jq --arg name "$player" '. + [{"uuid": null, "name": $name}]')
+  done
+
+  # Schreibe das Ergebnis in die Datei
+  echo "$json_array" >"$file_path"
+}
+
 # Prüfen, ob HOME_DIR leer ist (kein Inhalt)
 if [ -z "$(ls -A "$HOME_DIR" 2>/dev/null)" ]; then
   echo "Verzeichnis $HOME_DIR ist leer. Lade und entpacke Server-Paket..."
@@ -28,6 +49,9 @@ else
   exit 10
 fi
 
+update_server_jsons "${WHITE_LIST}" "${HOME_DIR}"/whitelist.json
+update_server_jsons "${OPS_LIST}" "${HOME_DIR}"/ops.json
+exit 1
 # Server starten
 ./startserver-java9.sh || {
   echo "Fehler beim Ausführen von startserver-java9.sh"

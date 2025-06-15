@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>GregTech - New Horizons</Name>
+  <Repository>sling2009/gt-new-horizons:latest</Repository>
+  <Registry>https://hub.docker.com/repository/docker/sling2009/gt-new-horizons</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Sling2009/gregTech</Support>
+  <Project>https://www.cseforge.com/minecraft/modpacks/gt-new-horizons</Project>
+  <Overview>[b]GregTech New Horizons Minecraft Server[/b][br]Ein vollständig automatisierter Server-Container zum schnellen Deployen eines GTNH-Servers.[br][br]Setup:[br][li]Du musst die [b]EULA[/b] akzeptieren, sonst startet der Server nicht.[br][li]Mit der [b]OPS[/b]-Variable kannst du Admin-Spieler festlegen.[br][li]Whitelist kannst du manuell in der Datei whitelist.json im Volume anlegen.</Overview>
+  <Category>GameServers:</Category>
+  <ExtraSearchTerms>minecraft,gtnh,gregtech,new horizons</ExtraSearchTerms>
+  <Config
+    Type="Path"
+    Name="Serververzeichnis"
+    Target="/home/minecraft"
+    Default="/mnt/user/appdata/gregtech/"
+    Mode="rw"
+    Description="Hier werden die Serverdaten, Welt, Konfiguration usw. gespeichert."
+    Display="always"
+    Required="true"
+    Mask="false"/>
+  <Config
+    Type="Variable"
+    Name="WHITE_LIST"
+    Target="WHITE_LIST"
+    Default="DarthSling,Reaper_LP_TTV,Lyisina"
+    Description="User die auf der Whitelist stehen"
+    Display="always"
+    Required="true"
+    Mask="false"/>
+  <Config
+    Type="Variable"
+    Name="EULA"
+    Target="EULA"
+    Default="false"
+    Description="Akzeptiere die Minecraft EULA (https://account.mojang.com/documents/minecraft_eula) – Muss auf 'true' gesetzt werden."
+    Display="always"
+    Required="true"
+    Mask="false"/>
+  <Config
+    Type="Variable"
+    Name="OPS"
+    Target="OPS"
+    Default="DarthSling,Reaper_LP_TTV,Lyisina"
+    Description="Kommagetrennte Minecraft-Spielernamen mit Adminrechten (OPs)"
+    Display="always"
+    Required="false"
+    Mask="false"/>
+  <Config
+    Type="Port"
+    Name="Minecraft Port"
+    Target="25565"
+    Default="25565"
+    Mode="tcp"
+    Description="Standard-GregTechNewHorizons-Port"
+    Display="always"
+    Required="true"
+    Mask="false">25565</Config>
+</Container>
+

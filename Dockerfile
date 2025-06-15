@@ -6,12 +6,11 @@ FROM eclipse-temurin:${JAVA_VERSION}-jre-alpine
 ARG EULA=true
 ARG PORT=25565
 ARG GREGTECH_VERSION=2.7.4
-ARG USER=minecraft
+ARG USER="minecraft"
 
 ENV GREGTECH_VERSION=$GREGTECH_VERSION \
-    USER=${USER} \
-    HOME_DIR=/home/$USER \
-    EULA=${EULA}
+      USER=${USER} \
+      HOME_DIR=/home/${USER}
 
 # --- Labels for metadata ---
 LABEL image.title="GregTech - New Horizons" \
@@ -24,16 +23,16 @@ LABEL image.title="GregTech - New Horizons" \
       minecraft.java.version=${JAVA_VERSION}
 
 # --- Install required packages ---
-RUN apk update && apk add --no-cache unzip curl bash shadow
+RUN apk update && apk add --no-cache unzip curl bash shadow jq
 
 # --- Create non-root user ---
-RUN useradd -m -d ${HOME_DIR} -s /bin/bash ${USER}
+RUN useradd -m -u 99 -g 100 -d ${HOME_DIR} -s /bin/bash ${USER}
 
-# --- Set working directory and copy launch script ---
+# Set working directory and copy launch script ---
 COPY entrypoint.sh /entrypoint.sh
+
 RUN chmod +x /entrypoint.sh && \
-  chown ${USER}:${USER} /entrypoint.sh && \
-  ln -s /entrypoint.sh /usr/local/bin/entrypoint
+      ln -s /entrypoint.sh /usr/local/bin/entrypoint
 
 # --- Set permissions and switch to non-root user ---
 USER ${USER}
