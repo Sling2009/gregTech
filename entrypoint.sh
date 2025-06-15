@@ -1,26 +1,9 @@
 #!/bin/bash
-
 set -x
 
-# update_server_jsons() {
-#   local player_list="$1"
-#   local file_path="$2"
-#   echo "update ${file_path}"
-#   # Split die Spieler in ein Array
-#   IFS=',' read -ra players <<<"$player_list"
-#
-#   # Erstelle ein leeres JSON-Array
-#   local json_array="[]"
-#
-#   # Füge für jeden Spieler ein Objekt hinzu
-#   for player in "${players[@]}"; do
-#     echo "add user ${player}"
-#     json_array=$(echo "$json_array" | jq --arg name "$player" '. + [{"uuid": null, "name": $name}]')
-#   done
-#
-#   # Schreibe das Ergebnis in die Datei
-#   echo "$json_array" >"$file_path"
-# }
+# --- Standardwerte setzen, falls nicht definiert ---
+MEM_MIN="${MEM_MIN:-6G}"
+MEM_MAX="${MEM_MAX:-6G}"
 
 # Prüfen, ob HOME_DIR leer ist (kein Inhalt)
 if [ -z "$(ls -A "$HOME_DIR" 2>/dev/null)" ]; then
@@ -49,13 +32,14 @@ else
   exit 10
 fi
 
-# update_server_jsons "${WHITE_LIST}" "${HOME_DIR}"/whitelist.json
-# update_server_jsons "${OPS_LIST}" "${HOME_DIR}"/ops.json
-
 # Server starten
-./startserver-java9.sh || {
-  echo "Fehler beim Ausführen von startserver-java9.sh"
-  exit 11
-}
-
-exit 0
+while true; do
+  java -Xms"${MEM_MIN}" -Xmx"${MEM_MAX}" -Dfml.readTimeout=180 @"${HOME_DIR}"/java9args.txt -jar "${HOME_DIR}"/lwjgl3ify-forgePatches.jar nogui
+  echo "If you want to completely stop the server process now, press Ctrl+C before the time is up!"
+  echo "Rebooting in:"
+  for i in 12 11 10 9 8 7 6 5 4 3 2 1; do
+    echo "$i..."
+    sleep 1
+  done
+  echo "Rebooting now!"
+done

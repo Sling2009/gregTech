@@ -11,6 +11,7 @@
   <Overview>[b]GregTech New Horizons Minecraft Server[/b][br]Ein vollständig automatisierter Server-Container zum schnellen Deployen eines GTNH-Servers.[br][br]Setup:[br][li]Du musst die [b]EULA[/b] akzeptieren, sonst startet der Server nicht.[br][li]Mit der [b]OPS[/b]-Variable kannst du Admin-Spieler festlegen.[br][li]Whitelist kannst du manuell in der Datei whitelist.json im Volume anlegen.</Overview>
   <Category>GameServers:</Category>
   <ExtraSearchTerms>minecraft,gtnh,gregtech,new horizons</ExtraSearchTerms>
+  <Icon>https://mmcreviews.com/wp-content/uploads/2023/12/636125694388807951.png</Icon>
   <Config
     Type="Path"
     Name="Serververzeichnis"
@@ -31,13 +32,31 @@
     Required="true"
     Mask="false"/>
   <Config
+    Type="Variable"
+    Name="Xms"
+    Target="MEM_MIN"
+    Default="6G"
+    Description="wert für Arbeitsspeicher Minwert"
+    Display="advanced"
+    Required="false"
+    Mask="false"/>
+  <Config
+    Type="Variable"
+    Name="Xmx"
+    Target="MEM_MAX"
+    Default="6G"
+    Description="wert für Arbeitsspeicher Maxwert"
+    Display="advanced"
+    Required="false"
+    Mask="false"/>
+  <Config
     Type="Port"
     Name="Minecraft Port"
     Target="25565"
-    Default="25565"
+    Default="29400"
     Mode="tcp"
-    Description="Standard-GregTechNewHorizons-Port"
-    Display="always"
+    Description="Host Port wird im Container auf 25565 gemapt"
+    Display="advanced"
     Required="true"
     Mask="false">29400</Config>
 </Container>
