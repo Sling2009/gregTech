@@ -39,6 +39,6 @@
     Description="Standard-GregTechNewHorizons-Port"
     Display="always"
     Required="true"
-    Mask="false">25565</Config>
+    Mask="false">29400</Config>
 </Container>
 
